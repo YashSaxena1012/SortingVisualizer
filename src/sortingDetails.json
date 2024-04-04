@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Bubble Sort",
+    "worstCase": "O(n^2)",
+    "bestCase": "O(n)",
+    "averageCase": "O(n^2)",
+    "spaceComplexity": "O(1)",
+    "code": "void swap(int *xp, int *yp) {\n    int temp = *xp;\n    *xp = *yp;\n    *yp = temp;\n}\n\nvoid bubbleSort(int arr[], int n) {\n    for (int i = 0; i < n-1; i++)\n        for (int j = 0; j < n-i-1; j++)\n            if (arr[j] > arr[j+1])\n                swap(&arr[j], &arr[j+1]);\n}\n\nint main() {\n    int arr[] = {64, 34, 25, 12, 22, 11, 90};\n    int n = sizeof(arr)/sizeof(arr[0]);\n    bubbleSort(arr, n);\n    printf(\"Sorted array: \\n\");\n    for (int i=0; i < n; i++)\n        printf(\"%d \", arr[i]);\n    printf(\"\\n\");\n    return 0;\n}"
+  },
+  {
+    "name": "Insertion Sort",
+    "worstCase": "O(n^2)",
+    "bestCase": "O(n)",
+    "averageCase": "O(n^2)",
+    "spaceComplexity": "O(1)",
+    "code": "void insertionSort(int arr[], int n) {\n    int i, key, j;\n    for (i = 1; i < n; i++) {\n        key = arr[i];\n        j = i - 1;\n        while (j >= 0 && arr[j] > key) {\n            arr[j + 1] = arr[j];\n            j = j - 1;\n        }\n        arr[j + 1] = key;\n    }\n}\n\nint main() {\n    int arr[] = {12, 11, 13, 5, 6};\n    int n = sizeof(arr)/sizeof(arr[0]);\n    insertionSort(arr, n);\n    printf(\"Sorted array: \\n\");\n    for (int i=0; i < n; i++)\n        printf(\"%d \", arr[i]);\n    printf(\"\\n\");\n    return 0;\n}"
+  },
+  {
+    "name": "Selection Sort",
+    "worstCase": "O(n^2)",
+    "bestCase": "O(n^2)",
+    "averageCase": "O(n^2)",
+    "spaceComplexity": "O(1)",
+    "code": "void swap(int *xp, int *yp) {\n    int temp = *xp;\n    *xp = *yp;\n    *yp = temp;\n}\n\nvoid selectionSort(int arr[], int n) {\n    int i, j, min_idx;\n    for (i = 0; i < n-1; i++) {\n        min_idx = i;\n        for (j = i+1; j < n; j++)\n            if (arr[j] < arr[min_idx])\n                min_idx = j;\n        swap(&arr[min_idx], &arr[i]);\n    }\n}\n\nint main() {\n    int arr[] = {64, 25, 12, 22, 11};\n    int n = sizeof(arr)/sizeof(arr[0]);\n    selectionSort(arr, n);\n    printf(\"Sorted array: \\n\");\n    for (int i=0; i < n; i++)\n        printf(\"%d \", arr[i]);\n    printf(\"\\n\");\n    return 0;\n}"
+  },
+  {
+    "name": "Merge Sort",
+    "worstCase": "O(n log n)",
+    "bestCase": "O(n log n)",
+    "averageCase": "O(n log n)",
+    "spaceComplexity": "O(n)",
+    "code": "void merge(int arr[], int l, int m, int r) {\n    int i, j, k;\n    int n1 = m - l + 1;\n    int n2 = r - m;\n    int L[n1], R[n2];\n\n    for (i = 0; i < n1; i++)\n        L[i] = arr[l + i];\n    for (j = 0; j < n2; j++)\n        R[j] = arr[m + 1+ j];\n\n    i = 0;\n    j = 0;\n    k = l;\n    while (i < n1 && j < n2) {\n        if (L[i] <= R[j]) {\n            arr[k] = L[i];\n            i++;\n        } else {\n            arr[k] = R[j];\n            j++;\n        }\n        k++;\n    }\n\n    while (i < n1) {\n        arr[k] = L[i];\n        i++;\n        k++;\n    }\n\n    while (j < n2) {\n        arr[k] = R[j];\n        j++;\n        k++;\n    }\n}\n\nvoid mergeSort(int arr[], int l, int r) {\n    if (l < r) {\n        int m = l+(r-l)/2;\n        mergeSort(arr, l, m);\n        mergeSort(arr, m+1, r);\n        merge(arr, l, m, r);\n    }\n}\n\nint main() {\n    int arr[] = {12, 11, 13, 5, 6, 7};\n    int arr_size = sizeof(arr)/sizeof(arr[0]);\n\n    printf(\"Given array is \\n\");\n    printArray(arr, arr_size);\n\n    mergeSort(arr, 0, arr_size - 1);\n\n    printf(\"\\nSorted array is \\n\");\n    printArray(arr, arr_size);\n    return 0;\n}"
+  },
+  {
+    "name": "Quick Sort",
+    "worstCase": "O(n^2)",
+    "bestCase": "O(n log n)",
+    "averageCase": "O(n log n)",
+    "spaceComplexity": "O(log n)",
+    "code": "int partition (int arr[], int low, int high) {\n    int pivot = arr[high];\n    int i = (low - 1);\n\n    for (int j = low; j <= high - 1; j++) {\n        if (arr[j] < pivot) {\n            i++;\n            swap(&arr[i], &arr[j]);\n        }\n    }\n    swap(&arr[i + 1], &arr[high]);\n    return (i + 1);\n}\n\nvoid quickSort(int arr[], int low, int high) {\n    if (low < high) {\n        int pi = partition(arr, low, high);\n\n        quickSort(arr, low, pi - 1);\n        quickSort(arr, pi + 1, high);\n    }\n}\n\nint main() {\n    int arr[] = {10, 7, 8, 9, 1, 5};\n    int n = sizeof(arr)/sizeof(arr[0]);\n    quickSort(arr, 0, n-1);\n    printf(\"Sorted array: \\n\");\n    printArray(arr, n);\n    return 0;\n}"
+  }
+]
