@@ -176,7 +176,7 @@ useEffect(()=>{
               </form>
             </div>
             <div className= "w-full flex gap-1 justify-center flex-row-reverse rotate-180">
-              {console.log(array)}
+              {/* {console.log(array)} */}
               {array.map((value, index) => {
                 return (
                   <Bar

@@ -3,11 +3,11 @@ import sortingDetails from "../sortingDetails.json";
 
 const Details = ({ sortChoosed }) => {
   const [algo, setAlgo] = useState({});
-console.log(sortChoosed)
+// console.log(sortChoosed)
   useEffect(() => {
     const temp = sortingDetails.find((item) => sortChoosed === item.name);
     setAlgo(temp);
-    console.log(algo);
+    // console.log(algo);
   }, [sortChoosed]);
 
   return (

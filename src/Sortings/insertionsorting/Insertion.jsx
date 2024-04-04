@@ -16,7 +16,7 @@
           arr[j+1]=key;
           animate.push([j+1,key,true])
         }
-console.log(arr)
+// console.log(arr)
 return animate;
 }
 

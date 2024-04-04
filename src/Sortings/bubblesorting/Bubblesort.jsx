@@ -33,7 +33,7 @@ const Bubblesort = (array, speed) => {
           bar.style.backgroundColor = 'black';
         }
         enableButtons()
-        console.log("ytr")
+        // console.log("ytr")
       },animations.length * (1000/speed))
     })
     return array; 
